@@ -1,20 +1,14 @@
-let john = { name: "John", last: "Smith", age: 31, id: 1, totalPoints: 2345 };
-let joe = { name: "Joe", last: "test", age: 43, id: 2, totalPoints: 4323 };
-let mike = { name: "Mike", last: "test2", age: 13, id: 3, totalPoints: 2341 };
+let users = [
+  { id: "John", name: "John Smith", age: 20 },
+  { id: "Joe", name: "Joe Shmoe", age: 22 },
+  { id: "Mike", name: "Mike Last", age: 24 },
+];
 
-let users = [john, joe, mike];
-
-function sortByAge(people) {
-  return people.sort((a, b) => a.age - b.age);
+function groupById(arr) {
+  return arr.reduce((obj, value) => {
+    obj[value.id] = value;
+    return obj;
+  }, {});
 }
 
-function getAverageAge(users) {
-  return users.reduce((prev, user) => prev + user.age, 0) / users.length;
-}
-
-function getTotalPoints(users) {
-  return users.reduce((prev, user) => prev + user.totalPoints, 0);
-}
-console.log(getAverageAge(users));
-
-console.log(`Total points: ${getTotalPoints(users)}`);
+console.log(groupById(users));
